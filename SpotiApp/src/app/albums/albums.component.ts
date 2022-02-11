@@ -1,21 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SpotiService } from '../services/spoti.service';
-
+import { Router } from "@angular/router";
 interface Artist {
   name: string;
   id: string;
-}
-
-interface Songs{
-  name: string
-  albumName: string
-  popularity: string
-  images: Array<any>
-}
-
-interface ArtistSongs{
-  artist: Artist
-  songs: Array<Songs>
 }
 
 @Component({
@@ -36,14 +23,7 @@ export class AlbumsComponent implements OnInit {
   @Input()
   public showAlbums = false;
   
-  public artistAlbum: ArtistSongs = {
-    artist: { name : "" , id : ""},
-    songs: []
-  }; 
-
-  constructor(private spoti: SpotiService) {
-   
-  }
+  constructor(private router: Router) {}
 
   ngOnInit() {
 
@@ -58,24 +38,6 @@ export class AlbumsComponent implements OnInit {
 
   goArtist(id: string) {
     console.log(id);
-    this.spoti.getArtistWithId(id).then((value) => {
-      if (typeof value === 'string') {
-        let response = JSON.parse(value);
-        console.log(response);
-
-        for(let i = 0; i < this.artists.length; i++){
-          if(this.artists[i].id == id){
-            this.artistAlbum.artist = this.artists[i];
-          }
-        }
-
-        // for(let i = 0; i < response.tracks.length; i++){
-        //   this.artistAlbum.albumes.push({name: response.items[i].name , images : response.items[i].images });
-        // }
-
-        console.log(this.artistAlbum);
-        
-      }
-    });
+    this.router.navigate(['artists/'+id]);
   }
 }

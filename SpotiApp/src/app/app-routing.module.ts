@@ -11,6 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'search',
+    component: SearchComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'artists/:id',
     component: ArtistsComponent,
     pathMatch: 'full'
   }
