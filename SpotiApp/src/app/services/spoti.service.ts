@@ -109,8 +109,45 @@ export class SpotiService {
     });
   }
 
+  
 
-  async getArtistWithId(id:string) {
+  async getArtistById(id:string) {
+    let promiseToken = await this.getToken();
+    let access_token = '';
+
+    if (typeof promiseToken === 'string') {
+      let token = JSON.parse(promiseToken);
+      access_token = token.access_token;
+      console.log("token en promise => " + token.access_token);
+    }
+
+    return new Promise(function (resolve, reject) {
+      // do the usual XHR stuff 
+      var req = new XMLHttpRequest();
+      req.open('get', 'https://api.spotify.com/v1/artists/' + id , false);
+      //NOW WE TELL THE SERVER WHAT FORMAT OF POST REQUEST WE ARE MAKING 
+      req.setRequestHeader('Accept', 'application/json');
+      req.setRequestHeader('Content-Type', 'application/json');
+      req.setRequestHeader('Authorization', 'Bearer ' + access_token);
+
+      req.onload = function () {
+        if (req.status == 200) {
+          resolve(req.response);
+        }
+        else {
+          reject(Error(req.statusText));
+        }
+      };
+      // handle network errors 
+      req.onerror = function () {
+        reject(Error("Network Error"));
+      }; // make the request 
+      req.send();
+    });
+
+  }
+
+  async getArtistTracksWithId(id:string) {
     let promiseToken = await this.getToken();
     let access_token = '';
 

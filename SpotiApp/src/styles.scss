@@ -1,76 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 body {
-    background-color: black;
-    height: 100%;
-    min-height: 100%;
-    color: white !important;
-  }
-  
-//   hr {
-//     border-color: white;
-//   }
-  
-//   .puntero {
-//     cursor: pointer;
-//   }
-  
-//   .img-circle {
-//     border-radius: 100%;
-//     width: 150px;
-//   }
-  
-//   .card-title,
-//   .card-text {
-//     color: black;
-//   }
-  
-//   .badge {
-//     margin-left: 5px;
-//   }
-  
-//   .btn-outline-success {
-//     margin-left: 5px;
-//   }
-  
-//   .img-thumb {
-//     width: 50px;
-//     height: 50px;
-//   }
-  
-//   .main-container{
-//     margin-top: 30px;
-//   }
-  
-//   .top30
-//   {
-//     margin-top:30px;
-//   }
-//   /* Animaciones */
-  
-//   .animated {
-//     -webkit-animation-duration: 1s;
-//     animation-duration: 1s;
-//     -webkit-animation-fill-mode: both;
-//     animation-fill-mode: both;
-//   }
-  
-//   .fast {
-//     -webkit-animation-duration: 0.4s;
-//     animation-duration: 0.4s;
-//     -webkit-animation-fill-mode: both;
-//     animation-fill-mode: both;
-//   }
-  
-//   @keyframes fadeIn {
-//     from {
-//         opacity: 0;
-//     }
-//     to {
-//         opacity: 1;
-//     }
-//   }
-  
-//   .fadeIn {
-//     animation-name: fadeIn;
-//   }
+  background-color: black !important;
+  height: 100%;
+  min-height: 100%;
+  color: white !important;
+}
+ 
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

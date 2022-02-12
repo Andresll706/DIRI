@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpotiService } from '../services/spoti.service';
+import {Location} from '@angular/common';
 
 interface Artist {
-  name: string;
-  id: string;
+  name: string
+  id: string
+  images: Array<any>
+  url: string
 }
 
 interface Songs {
@@ -12,6 +15,8 @@ interface Songs {
   albumName: string
   popularity: string
   images: Array<any>
+  pista: string
+  uri: string
 }
 
 interface ArtistSongs {
@@ -27,36 +32,44 @@ interface ArtistSongs {
 })
 export class ArtistsComponent implements OnInit {
 
-
-  @Input()
-  public artist: any;
-
   public artistAlbum: ArtistSongs = {
-    artist: { name: "", id: "" },
+    artist: { name: "", id: "" , images: [], url: "" },
     songs: []
   };
 
-  constructor(private spoti: SpotiService, private route: ActivatedRoute) {
+  constructor(private spoti: SpotiService, private route: ActivatedRoute, private location: Location) {
     this.route.params.subscribe(parameters => {
       let id = parameters['id'];
       if (id) {
-        this.spoti.getArtistWithId(id).then((value) => {
+
+        this.spoti.getArtistById(id).then((value)=> {
+          if (typeof value === 'string') {
+            let response = JSON.parse(value);
+            console.log(response);
+            this.artistAlbum.artist.name = response.name;
+            this.artistAlbum.artist.id = id;
+            this.artistAlbum.artist.images = response.images;
+            this.artistAlbum.artist.url = response.external_urls.spotify;
+          }
+        });
+
+        this.spoti.getArtistTracksWithId(id).then((value) => {
           if (typeof value === 'string') {
             let response = JSON.parse(value);
             console.log(response);
 
-            // for(let i = 0; i < this.artists.length; i++){
-            //   if(this.artist[i].id == id){
-            //     this.artistAlbum.artist = this.artists[i];
-            //   }
-            // }
-
-            // for(let i = 0; i < response.tracks.length; i++){
-            //   this.artistAlbum.songs.push({name: response.tracks[i].name , albumName : response.tracks[i].album.name , popularity: response.tracks[i].popularity , images: response.tracks[i].album.images});
-            // }
-
+            for(let i = 0; i < response.tracks.length; i++){
+              this.artistAlbum.songs.push(
+                { 
+                  name: response.tracks[i].name, 
+                  albumName : response.tracks[i].album.name, 
+                  popularity: response.tracks[i].popularity, 
+                  images: response.tracks[i].album.images, 
+                  pista: response.tracks[i].preview_url,
+                  uri: response.tracks[i].uri
+                });
+            }
             console.log(this.artistAlbum);
-
           }
         });
       }
@@ -67,5 +80,8 @@ export class ArtistsComponent implements OnInit {
 
   }
 
+  backClicked() {
+    this.location.back();
+  }
 
 }

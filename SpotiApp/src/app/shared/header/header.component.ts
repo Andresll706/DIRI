@@ -8,6 +8,8 @@ import { SpotiService } from 'src/app/services/spoti.service';
 })
 export class HeaderComponent implements OnInit {
 
+  public isMenuCollapsed = true;
+
   constructor(private Spoti: SpotiService) {
    
   }

@@ -10,7 +10,9 @@ import { SearchComponent } from './search/search.component';
 import { ArtistsComponent } from './artists/artists.component';
 import { SinfotoPipe } from './pipes/sinfoto.pipe';
 import { AlbumsComponent } from './albums/albums.component';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { DomseguroPipe } from './pipes/domseguro.pipe'; 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,14 @@ import { FormsModule } from '@angular/forms';
     SearchComponent,
     ArtistsComponent,
     SinfotoPipe,
-    AlbumsComponent
+    AlbumsComponent,
+    DomseguroPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
