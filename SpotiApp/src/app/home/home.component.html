@@ -4,4 +4,8 @@
             <albums [albums]="album" [showAlbums]="true"></albums >
         </div>
     </div>
+
+    <div class="row" *ngIf="error">
+        <h3> Sorry, an error occurred during your request!</h3>
+    </div>
 </div>

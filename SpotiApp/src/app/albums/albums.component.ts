@@ -27,7 +27,6 @@ export class AlbumsComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log("constructor => " + this.albums);
     if (this.albums != undefined) {
       for (let artist of this.albums.artist) {
         this.artists.push({ name: artist.name, id: artist.id });
@@ -37,7 +36,6 @@ export class AlbumsComponent implements OnInit {
   }
 
   goArtist(id: string) {
-    console.log(id);
     this.router.navigate(['artists/'+id]);
   }
 }

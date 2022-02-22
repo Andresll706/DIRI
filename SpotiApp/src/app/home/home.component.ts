@@ -21,15 +21,15 @@ export class HomeComponent implements OnInit {
 
   public showAlbums = false;
 
+  public error = false;
+
   constructor(private spoti: SpotiService) { }
 
   ngOnInit() {
     this.spoti.getNewReleases().then((value) => {
       if (typeof value === 'string') {
         let v = JSON.parse(value);
-        console.log(v);
         this.releases = v.albums.items;
-        console.log(this.releases);
       }
 
       if (this.releases != undefined) {
@@ -38,8 +38,11 @@ export class HomeComponent implements OnInit {
         }
         this.showAlbums = true;
       }
-      console.log(this.albums);
-    }).catch((reason:any)=>{console.log("Network Error")});
+      this.error = false;
+    }).catch((reason:any)=>{
+      console.log("Network Error")
+      this.error = true;
+    });
 
 
   }

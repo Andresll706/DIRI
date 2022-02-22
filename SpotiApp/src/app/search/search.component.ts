@@ -21,6 +21,8 @@ export class SearchComponent implements OnInit {
 
   public search!: string;
 
+  public error = false;
+
   constructor(private spoti: SpotiService) { }
 
   ngOnInit(): void {
@@ -32,18 +34,19 @@ export class SearchComponent implements OnInit {
     this.spoti.getArtists(artist).then((value) => {
       if (typeof value === 'string') {
         let response = JSON.parse(value);
-        console.log(response);
         if (response != undefined) {
-          console.log(response.artists.items);
           for (let item of response.artists.items) {
             let art: any = [];
             art.push({ 'name': item.name, 'id': item.id });
             this.albums.push({ name: item.name, images: item.images, artist: art });
           }
         }
-        console.log(this.albums);
         this.showAlbums = true;
+        this.error = false;
       }
-    }).catch((reason:any)=>{console.log("Network Error")});
+    }).catch((reason:any)=>{
+      console.log("Network Error")
+      this.error = true;
+    });
   }
 }

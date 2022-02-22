@@ -45,7 +45,6 @@ export class ArtistsComponent implements OnInit {
         this.spoti.getArtistById(id).then((value)=> {
           if (typeof value === 'string') {
             let response = JSON.parse(value);
-            console.log(response);
             this.artistAlbum.artist.name = response.name;
             this.artistAlbum.artist.id = id;
             this.artistAlbum.artist.images = response.images;
@@ -56,7 +55,6 @@ export class ArtistsComponent implements OnInit {
         this.spoti.getArtistTracksWithId(id).then((value) => {
           if (typeof value === 'string') {
             let response = JSON.parse(value);
-            console.log(response);
 
             for(let track of response.tracks){
               this.artistAlbum.songs.push(
@@ -69,9 +67,8 @@ export class ArtistsComponent implements OnInit {
                   uri: track.uri
                 });
             }
-            console.log(this.artistAlbum);
           }
-        }).catch((reason:any)=>{console.log(reason)});
+        }).catch((reason:any)=>{console.log("Network Error")});
       }
     });
   }

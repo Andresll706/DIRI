@@ -5,20 +5,21 @@
         </div>
         <div class="col-8 border-bottom">
             <h3>{{artistAlbum.artist.name}}</h3>
-            <a href="{{artistAlbum.artist.url}}" target="_blank" class="btn btn-outline-success"> Abrir Spotify </a>
-            <button class="btn btn-outline-danger" (click)="backClicked()"> Regresar </button>
+            <a href="{{artistAlbum.artist.url}}" target="_blank" class="btn btn-outline-success"> Open Spotify </a>
+            <button class="btn btn-outline-danger" (click)="backClicked()"> Back </button>
         </div>
     </div>
     <div class="row mt-5">
         <div class="container">
             <table class="table text-white">
+                <caption> Artists Songs </caption>
                 <thead>
                   <tr>
-                    <th scope="col">Foto</th>
+                    <th scope="col">Photography</th>
                     <th scope="col">Album</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Popularidad</th>
-                    <th scope="col">Escuchar</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Popularity</th>
+                    <th scope="col">Listen</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -27,9 +28,7 @@
                     <td>{{song.albumName}}</td>
                     <td>{{song.name}}</td>
                     <td>{{song.popularity}}</td>
-                    <td><iframe [src]="song.uri | domseguro:'https://open.spotify.com/embed?uri='" width="300" height="80"
-                      frameborder="0" allowtransparency="true"></iframe></td>
-                    <!-- <td><audio controls><source [src]="song.pista">Debes actualizar tu navegador</audio></td> -->
+                    <td><iframe [src]="song.uri | domseguro:'https://open.spotify.com/embed?uri='" width="300" height="80" title="Song"></iframe></td>
                   </tr>
                 </tbody>
               </table>
