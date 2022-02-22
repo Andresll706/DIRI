@@ -43,7 +43,6 @@ export class HeaderComponent implements OnInit {
 
   public findWine(){
     this.router.navigate(['wines/'+ this.WineCtrl.value.toString().toLowerCase()]);
-
   }
 
 

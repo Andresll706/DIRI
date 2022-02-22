@@ -33,15 +33,15 @@ export class HomeComponent implements OnInit {
       }
 
       if (this.releases != undefined) {
-        for(let i = 0; i < this.releases.length; i++){
-          this.albums?.push({name: this.releases[i].name, images: this.releases[i].images, artist : this.releases[i].artists});
+        for(let release of this.releases){
+          this.albums?.push({name: release.name, images: release.images, artist : release.artists});
         }
         this.showAlbums = true;
       }
       console.log(this.albums);
-    });
+    }).catch((reason:any)=>{console.log("Network Error")});
 
-   
+
   }
 
 }

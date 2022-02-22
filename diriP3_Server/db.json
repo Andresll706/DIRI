@@ -1,4 +1,5 @@
-[
+{
+  "vinos": [
     {
     "nombre": "BLOCK NINE",
     "uvas": "Pinot Noir",
@@ -131,5 +132,9 @@
       "id": 6,
       "region": "Tuscany"
     }
+  ],
+  "usuarios": [
+    { "usuario": "prueba", "password": "prueba" }
   ]
+}
   

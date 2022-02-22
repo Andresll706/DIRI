@@ -1,6 +1,6 @@
-
 import { Injectable, OnInit } from '@angular/core';
 import * as data from '../../../assets/data.json';
+import  { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,9 @@ export class ProductService implements OnInit {
 
   public products :  any  = (data  as  any).default;
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    // This is intentional
+  }
 
   ngOnInit(): void {
     this.products = data;

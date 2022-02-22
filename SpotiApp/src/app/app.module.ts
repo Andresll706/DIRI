@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -11,8 +11,8 @@ import { ArtistsComponent } from './artists/artists.component';
 import { SinfotoPipe } from './pipes/sinfoto.pipe';
 import { AlbumsComponent } from './albums/albums.component';
 import { FormsModule } from '@angular/forms';
-import { DomseguroPipe } from './pipes/domseguro.pipe'; 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { DomseguroPipe } from './pipes/domseguro.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,6 +28,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     NgbModule

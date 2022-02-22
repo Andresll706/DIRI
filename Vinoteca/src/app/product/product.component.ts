@@ -4,8 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  templateUrl: './product.component.html'
 })
 export class ProductComponent implements OnInit {
 
@@ -19,6 +18,7 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // This is intentional
   }
 
 }

@@ -22,15 +22,15 @@ export class AlbumsComponent implements OnInit {
 
   @Input()
   public showAlbums = false;
-  
+
   constructor(private router: Router) {}
 
   ngOnInit() {
 
     console.log("constructor => " + this.albums);
     if (this.albums != undefined) {
-      for (let i = 0; i < this.albums.artist.length; i++) {
-        this.artists.push({ name: this.albums.artist[i].name, id: this.albums.artist[i].id });
+      for (let artist of this.albums.artist) {
+        this.artists.push({ name: artist.name, id: artist.id });
       }
     }
 

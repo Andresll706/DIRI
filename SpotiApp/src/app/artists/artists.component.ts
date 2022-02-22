@@ -51,33 +51,33 @@ export class ArtistsComponent implements OnInit {
             this.artistAlbum.artist.images = response.images;
             this.artistAlbum.artist.url = response.external_urls.spotify;
           }
-        });
+        }).catch((reason:any)=>{console.log(reason)});
 
         this.spoti.getArtistTracksWithId(id).then((value) => {
           if (typeof value === 'string') {
             let response = JSON.parse(value);
             console.log(response);
 
-            for(let i = 0; i < response.tracks.length; i++){
+            for(let track of response.tracks){
               this.artistAlbum.songs.push(
-                { 
-                  name: response.tracks[i].name, 
-                  albumName : response.tracks[i].album.name, 
-                  popularity: response.tracks[i].popularity, 
-                  images: response.tracks[i].album.images, 
-                  pista: response.tracks[i].preview_url,
-                  uri: response.tracks[i].uri
+                {
+                  name: track.name,
+                  albumName : track.album.name,
+                  popularity: track.popularity,
+                  images: track.album.images,
+                  pista: track.preview_url,
+                  uri: track.uri
                 });
             }
             console.log(this.artistAlbum);
           }
-        });
+        }).catch((reason:any)=>{console.log(reason)});
       }
     });
   }
 
   ngOnInit() {
-
+    // This is intentional
   }
 
   backClicked() {

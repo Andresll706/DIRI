@@ -11,11 +11,11 @@ export class ProductboxComponent implements OnInit {
   public product: any;
 
   constructor() {
+    // This is intentional
   }
 
   ngOnInit(): void {
+    // This is intentional
   }
-
-  
 
 }

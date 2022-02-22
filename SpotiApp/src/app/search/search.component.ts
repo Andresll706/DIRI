@@ -24,10 +24,10 @@ export class SearchComponent implements OnInit {
   constructor(private spoti: SpotiService) { }
 
   ngOnInit(): void {
+    //This is intentional
   }
 
   searchArtist(artist: any) {
-    console.log(artist);
     this.albums = [];
     this.spoti.getArtists(artist).then((value) => {
       if (typeof value === 'string') {
@@ -35,15 +35,15 @@ export class SearchComponent implements OnInit {
         console.log(response);
         if (response != undefined) {
           console.log(response.artists.items);
-          for (let i = 0; i < response.artists.items.length; i++) {
+          for (let item of response.artists.items) {
             let art: any = [];
-            art.push({ 'name': response.artists.items[i].name, 'id': response.artists.items[i].id });
-            this.albums.push({ name: response.artists.items[i].name, images: response.artists.items[i].images, artist: art });
+            art.push({ 'name': item.name, 'id': item.id });
+            this.albums.push({ name: item.name, images: item.images, artist: art });
           }
         }
         console.log(this.albums);
         this.showAlbums = true;
       }
-    });
+    }).catch((reason:any)=>{console.log("Network Error")});
   }
 }
