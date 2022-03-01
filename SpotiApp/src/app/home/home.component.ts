@@ -23,9 +23,12 @@ export class HomeComponent implements OnInit {
 
   public error = false;
 
+  public loading = false;
+
   constructor(private spoti: SpotiService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.spoti.getNewReleases().then((value) => {
       if (typeof value === 'string') {
         let v = JSON.parse(value);
@@ -38,10 +41,12 @@ export class HomeComponent implements OnInit {
         }
         this.showAlbums = true;
       }
+      this.loading = false;
       this.error = false;
     }).catch((reason:any)=>{
-      console.log("Network Error")
       this.error = true;
+      this.loading = false;
+      console.log("Error: " + reason);
     });
 
 

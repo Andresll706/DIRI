@@ -35,14 +35,14 @@ export class SpotiService {
           if (req.status === 200) {
             console.log(req.responseText);
           } else {
-            console.log("Network Error");
+            console.log("Error : " + req.status + " , " + req.statusText );
           }
         }
       }
 
       // handle network errors
       req.onerror = function () {
-        reject(Error("Network Error"));
+        reject(Error("Error : " + req.status + " , " + req.statusText));
       };
 
       // make the request
@@ -54,7 +54,7 @@ export class SpotiService {
   async getArtists(name: string) {
 
     let access_token = '';
-    let promiseToken = await this.getToken().catch((reason)=>{console.log("Network Error");});
+    let promiseToken = await this.getToken().catch((reason)=>{console.log("Error :" + reason);});
 
     if (typeof promiseToken === 'string')
     {
@@ -76,12 +76,12 @@ export class SpotiService {
           if (req.status == 200) {
             resolve(req.response);
           } else {
-            console.log("Network Error");
+            console.log("Error : " + req.status + " , " + req.statusText );
           }
         };
         // handle network errors
         req.onerror = function () {
-          reject(Error("Network Error"));
+          reject(Error("Error : " + req.status + " , " + req.statusText));
         }; // make the request
         req.send();
       });
@@ -93,7 +93,7 @@ export class SpotiService {
 
   async getNewReleases() {
     let access_token = '';
-    let promiseToken = await this.getToken().catch((reason)=>{console.log("Network Error");});
+    let promiseToken = await this.getToken().catch((reason)=>{console.log("Error: " + reason);});
 
     if (typeof promiseToken === 'string')
     {
@@ -121,7 +121,7 @@ export class SpotiService {
         };
         // handle network errors
         req.onerror = function () {
-          reject(Error("Network Error"));
+          reject(Error("Error : " + req.status + " , " + req.statusText));
         };
         // make the request
         req.send();
@@ -135,7 +135,7 @@ export class SpotiService {
 
   async getArtistById(id:string) {
     let access_token = '';
-    let promiseToken = await this.getToken().catch((reason)=>{console.log("Network Error");});
+    let promiseToken = await this.getToken().catch((reason)=>{console.log("Error: " + reason);});
 
     if (typeof promiseToken === 'string')
     {
@@ -158,12 +158,12 @@ export class SpotiService {
             resolve(req.response);
           }
           else {
-            reject(Error("Network Error"));
+            reject(Error("Error : " + req.status + " , " + req.statusText));
           }
         };
         // handle network errors
         req.onerror = function () {
-         reject(Error("Network Error"));
+          reject(Error("Error : " + req.status + " , " + req.statusText));
         };
         // make the request
         req.send();
@@ -175,7 +175,7 @@ export class SpotiService {
 
   async getArtistTracksWithId(id:string) {
     let access_token = '';
-    let promiseToken = await this.getToken().catch((reason)=>{console.log("Network Error");});
+    let promiseToken = await this.getToken().catch((reason)=>{console.log("Error: " + reason);});
 
     if (typeof promiseToken === 'string')
     {
@@ -197,12 +197,13 @@ export class SpotiService {
           if (req.status == 200) {
             resolve(req.response);
           }
-          else {reject(Error("Network Error"));
+          else {
+            reject(Error("Error : " + req.status + " , " + req.statusText));
           }
         };
         // handle network errors
         req.onerror = function () {
-          reject(Error("Network Error"));
+          reject(Error("Error : " + req.status + " , " + req.statusText));
         }; // make the request
         req.send();
       });

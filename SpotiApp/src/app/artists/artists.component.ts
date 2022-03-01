@@ -68,7 +68,7 @@ export class ArtistsComponent implements OnInit {
                 });
             }
           }
-        }).catch((reason:any)=>{console.log("Network Error")});
+        }).catch((reason:any)=>{console.log("Error:" + reason)});
       }
     });
   }
